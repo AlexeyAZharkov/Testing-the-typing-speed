@@ -2,6 +2,7 @@ from tkinter import *
 # ---------------------------- CONSTANTS ------------------------------- #
 YELLOW = "#f7f5dd"
 FONT_NAME = "Courier"
+TEST_MIN = 0.1
 
 symbols_sum = 0
 words_sum = 0
@@ -10,37 +11,6 @@ window = Tk()
 window.title("Speed test")
 window.config(padx=50, pady=50, bg=YELLOW)
 window.minsize(300, 300)
-
-
-def set_text():
-    text_label['text'] = input_text.get('1.1', '1.4')
-
-# ---------------------------- TIMER RESET ------------------------------- #
-# def reset_timer():
-#     global reps
-#     reps = 0
-#     window.after_cancel(timer)
-#     check_label.config(text='')
-#     timer_label.config(text="Timer", fg=GREEN)
-#     canvas.itemconfig(timer_text, text="00:00")
-
-# ---------------------------- TIMER MECHANISM ------------------------------- #
-# def start_timer():
-#     global reps
-#     work_sec = WORK_MIN * 60
-#     short_breake_sec = SHORT_BREAK_MIN * 60
-#     long_breake_sec = LONG_BREAK_MIN * 60
-#     reps += 1
-#     if reps % 8 == 0:
-#         timer_label.config(text="Breake", fg=RED)
-#         count_down(long_breake_sec)
-#     elif reps % 2 == 0:
-#         timer_label.config(text="Breake", fg=PINK)
-#
-#         count_down(short_breake_sec)
-#     else:
-#         timer_label.config(text="Work", fg=GREEN)
-#         count_down(work_sec)
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 
@@ -75,7 +45,7 @@ def reset():
     result_label.config(text=f"All symbols per minute = 0")
     result_symbols.config(text=f"Correct CPM: {symbols_sum}")
     result_words.config(text=f"Words per minute: {words_sum}")
-    count_down(6)
+    count_down(TEST_MIN * 60)
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -110,6 +80,6 @@ while not starting:
     input_text.update()
     starting = input_text.edit_modified()
 
-count_down(60)
+count_down(TEST_MIN * 60)
 
 window.mainloop()
