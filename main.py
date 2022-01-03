@@ -1,8 +1,8 @@
 from tkinter import *
-# ---------------------------- CONSTANTS ------------------------------- #
+# ---------------------------- Constants ------------------------------- #
 YELLOW = "#f7f5dd"
 FONT_NAME = "Courier"
-TEST_MIN = 0.1
+TEST_MIN = 1
 
 symbols_sum = 0
 words_sum = 0
@@ -12,7 +12,7 @@ window.title("Speed test")
 window.config(padx=50, pady=50, bg=YELLOW)
 window.minsize(300, 300)
 
-# ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
+# ---------------------------- Сalculating the result ------------------------------- #
 
 def result(text_typed):
     global symbols_sum
@@ -26,6 +26,8 @@ def result(text_typed):
     result_words.config(text=f"Words per minute: {words_sum}")
 
 
+# ---------------------------- Countdown mechanism ------------------------------- #
+
 def count_down(count):
     if count > 0:
         window.after(1000, count_down, count - 1)
@@ -34,6 +36,8 @@ def count_down(count):
         text_typed = input_text.get('1.0', END)
         result(text_typed)
         input_text.config(bg='red', state=DISABLED)
+
+# ---------------------------- Reset ------------------------------- #
 
 def reset():
     global symbols_sum
